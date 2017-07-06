@@ -19,7 +19,7 @@ foreach ($player->getTallies() as $tally) {
     <article class="tally">
         <div class="tally-name"><?=$tally->name;?></div>
         <div class="tally-controls" data-playerTallyId="<?=$playerTally->id;?>">
-            <div class="tally-input"><input class="tally-controls-amount" type="text" /></div>
+            <div class="tally-input"><input class="tally-controls-amount" type="number" /></div>
             <div class="tally-mutate"><a class="tally-controls-mutate"><i class="fa fa-lg fa-fw fa-plus"></i></a></div>
             <div class="tally-amount"><?=$currentAmount;?></div>
         </div>

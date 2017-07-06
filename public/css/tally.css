@@ -1,6 +1,6 @@
 html {
     font-family: sans-serif;
-    font-size: 16px;
+    font-size: 14px;
 }
 body {
     padding: 3rem 0 0 0;
@@ -55,6 +55,7 @@ section {
 .tally-input input {
     background: #fff;
     width: 2rem;
+    border: 0;
 }
 .tally-controls a {
     text-align: center;
