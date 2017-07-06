@@ -1,6 +1,6 @@
 <?php /** @var $this \Parable\Framework\View */ ?>
 
-<h2>
+<h4>
     Players
     <a href="<?=$this->toolkit->getFullRouteUrlByName("add-player");?>">
         <i class="fa fa-fw fa-user-plus tally-button tally-add-player"></i>
@@ -8,7 +8,7 @@
     <a href="<?=$this->toolkit->getFullRouteUrlByName("add-tally");?>">
         <i class="fa fa-fw fa-plus tally-button tally-add-tally"></i>
     </a>
-</h2>
+</h4>
 
 <?php
 $players = $this->internal->get("players");

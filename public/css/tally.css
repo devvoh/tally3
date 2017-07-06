@@ -66,9 +66,10 @@ section {
     width: 4rem;
 }
 .tally-button {
-    font-size: 1rem;
+    font-size: 1.4rem !important;
     color: #7349e7;
     float: right;
+    margin-left: 1rem;
 }
 
 /* session messages */

@@ -3,12 +3,12 @@
 /** @var \Model\Player $player */
 $player = $this->internal->get('player');
 ?>
-<h2>
+<h4>
     <?=$player->name;?>
     <a href="<?=$this->toolkit->getFullRouteUrlByName("add-player-tally", ["playerId" => $player->id]);?>">
         <i class="fa fa-fw fa-plus tally-button tally-add-player-tally"></i>
     </a>
-</h2>
+</h4>
 
 <?php
 foreach ($player->getTallies() as $tally) {
