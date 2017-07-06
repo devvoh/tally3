@@ -1,0 +1,28 @@
+<?php /** @var $this \Parable\Framework\View */ ?>
+<?php
+/** @var \Model\Player $player */
+$player = $this->internal->get('player');
+?>
+<h2>
+    <?=$player->name;?>
+    <a href="<?=$this->toolkit->getFullRouteUrlByName("add-player-tally", ["playerId" => $player->id]);?>">
+        <i class="fa fa-fw fa-plus tally-button tally-add-player-tally"></i>
+    </a>
+</h2>
+
+<?php
+foreach ($player->getTallies() as $tally) {
+    $currentAmount = $tally->getCurrentAmountForPlayer($player);
+    $mutations = $tally->getMutationsForPlayer($player);
+    $playerTally = $tally->getPlayerTallyForPlayer($player);
+    ?>
+    <article class="tally">
+        <div class="tally-name"><?=$tally->name;?></div>
+        <div class="tally-controls" data-playerTallyId="<?=$playerTally->id;?>">
+            <div class="tally-input"><input class="tally-controls-amount" type="text" /></div>
+            <div class="tally-mutate"><a class="tally-controls-mutate"><i class="fa fa-lg fa-fw fa-plus"></i></a></div>
+            <div class="tally-amount"><?=$currentAmount;?></div>
+        </div>
+    </article>
+    <?php
+}

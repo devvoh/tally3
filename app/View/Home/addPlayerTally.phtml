@@ -1,0 +1,30 @@
+<?php /** @var $this \Parable\Framework\View */ ?>
+
+<?php
+$player = $this->internal->get("player");
+$tallies = $this->internal->get("tallies");
+$playerTallies = $this->internal->get("playerTallies");
+/** @var \Model\Tally[] $tallies */
+foreach ($tallies as $tally) {
+    $selected = false;
+    if (in_array($tally, $playerTallies)) {
+        $selected = true;
+    }
+    ?>
+    <a class="big-link player-tally-button <?=($selected ? "selected" : "");?>" data-playerId="<?=$player->id;?>" data-tallyId="<?=$tally->id;?>">
+        <?php
+        if ($selected) {
+            ?>
+            <i class="fa fa-fw fa-check"></i>
+            <?php
+        } else {
+            ?>
+            <i class="fa fa-fw fa-check" style="display:none"></i>
+            <?php
+        }
+        ?>
+        <?=$tally->name;?>
+    </a>
+    <?php
+}
+?>
