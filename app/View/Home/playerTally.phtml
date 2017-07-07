@@ -1,0 +1,25 @@
+<?php /** @var $this \Parable\Framework\View */ ?>
+<?php
+/** @var \Model\Player $player */
+$player = $this->internal->get('player');
+/** @var \Model\Tally $tally */
+$tally  = $this->internal->get('tally');
+/** @var \Model\PlayerTallyMutation[] $mutations */
+$mutations = $this->internal->get('mutations');
+?>
+<h4>
+    <?=$player->name;?> w/
+    <?=$tally->name;?>
+</h4>
+
+<?php
+foreach ($mutations as $mutation) {
+    ?>
+    <article class="tally">
+        <div class="tally-name"><?=$mutation->amount;?></div>
+        <div style="float:right">
+            <?=$mutation->created_at;?>
+        </div>
+    </article>
+    <?php
+}

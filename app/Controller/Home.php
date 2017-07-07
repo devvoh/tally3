@@ -52,6 +52,23 @@ class Home
         $this->internal->set("player", $player);
     }
 
+    public function playerTally(\Parable\Routing\Route $route, $playerId, $tallyId)
+    {
+        /** @var \Model\Player $player */
+        $player = $this->toolkit->getRepository(\Model\Player::class)->getById($playerId);
+        /** @var \Model\Tally $tally */
+        $tally = $this->toolkit->getRepository(\Model\Tally::class)->getById($tallyId);
+
+        $mutations = $tally->getMutationsForPlayer($player);
+        $mutations = array_reverse($mutations);
+
+        $this->internal->setAll([
+            "player" => $player,
+            "tally" => $tally,
+            "mutations" => $mutations,
+        ]);
+    }
+
     public function addTally(\Parable\Routing\Route $route)
     {
         if ($this->request->isPost()) {

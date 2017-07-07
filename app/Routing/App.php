@@ -20,6 +20,12 @@ class App implements
                 'controller' => \Controller\Home::class,
                 'action' => 'player',
             ],
+            'player-tally' => [
+                'methods' => ['GET'],
+                'url' => '/player-tally/{playerId}/{tallyId}',
+                'controller' => \Controller\Home::class,
+                'action' => 'playerTally',
+            ],
             'mutate' => [
                 'methods' => ['GET', 'POST'],
                 'url' => '/mutate/{playerTallyId}/{amount}',
