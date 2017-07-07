@@ -28,10 +28,15 @@
                         return;
                     }
 
+                    var intAmount = parseInt(amount);
+                    if (intAmount === 0) {
+                        intAmount = 1;
+                    }
+
                     var url = baseUrl + "/mutate/" + playerTallyId + "/" + amount;
                     $.get(url, function() {
                         var currentAmount = parseInt(totalElement.html());
-                        totalElement.html(currentAmount + parseInt(amount));
+                        totalElement.html(currentAmount + intAmount);
                     });
                 });
                 $('.player-tally-button').on('click', function() {
