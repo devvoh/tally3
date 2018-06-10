@@ -16,10 +16,10 @@ class Tally extends \Parable\ORM\Model
     public $name;
 
     /** @var \Model\PlayerTallyMutation[] */
-    public $mutations;
+    protected $mutations;
 
     /** @var \Model\PlayerTally */
-    public $playerTally;
+    protected $playerTally;
 
     public function __construct(
         \Parable\ORM\Database $database,

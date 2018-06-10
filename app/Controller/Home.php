@@ -16,43 +16,43 @@ class Home
     /** @var \Parable\GetSet\Post */
     protected $post;
 
-    /** @var \Parable\GetSet\SessionMessage */
+    /** @var \Parable\Framework\SessionMessage */
     protected $sessionMessage;
 
     public function __construct(
         \Parable\Framework\Toolkit $toolkit,
+        \Parable\Framework\SessionMessage $sessionMessage,
         \Parable\GetSet\Internal $internal,
         \Parable\Http\Request $request,
-        \Parable\GetSet\Post $post,
-        \Parable\GetSet\SessionMessage $sessionMessage
+        \Parable\GetSet\Post $post
     ) {
         $this->toolkit = $toolkit;
+        $this->sessionMessage = $sessionMessage;
         $this->internal = $internal;
         $this->request = $request;
         $this->post = $post;
-        $this->sessionMessage = $sessionMessage;
     }
 
     /**
-     * @param \Parable\Routing\Route $route
+     * @param
      */
-    public function index(\Parable\Routing\Route $route)
+    public function index()
     {
         $players = $this->toolkit->getRepository(\Model\Player::class);
         $this->internal->set("players", $players->getAll());
     }
 
     /**
-     * @param \Parable\Routing\Route $route
+     * @param
      */
-    public function player(\Parable\Routing\Route $route, $id)
+    public function player($id)
     {
         $player = $this->toolkit->getRepository(\Model\Player::class)->getById($id);
 
         $this->internal->set("player", $player);
     }
 
-    public function playerTally(\Parable\Routing\Route $route, $playerId, $tallyId)
+    public function playerTally($playerId, $tallyId)
     {
         /** @var \Model\Player $player */
         $player = $this->toolkit->getRepository(\Model\Player::class)->getById($playerId);
@@ -69,7 +69,7 @@ class Home
         ]);
     }
 
-    public function addTally(\Parable\Routing\Route $route)
+    public function addTally()
     {
         if ($this->request->isPost()) {
             if (!$this->post->get("name")) {
@@ -85,7 +85,7 @@ class Home
         }
     }
 
-    public function addPlayer(\Parable\Routing\Route $route)
+    public function addPlayer()
     {
         if ($this->request->isPost()) {
             if (!$this->post->get("name")) {
@@ -101,7 +101,7 @@ class Home
         }
     }
 
-    public function addPlayerTally(\Parable\Routing\Route $route, $id)
+    public function addPlayerTally($id)
     {
         /** @var \Model\Player $player */
         $player  = $this->toolkit->getRepository(\Model\Player::class)->getById($id);
@@ -116,7 +116,7 @@ class Home
         ]);
     }
 
-    public function mutate(\Parable\Routing\Route $route, $playerTallyId, $amount)
+    public function mutate($playerTallyId, $amount)
     {
         /** @var \Model\PlayerTallyMutation $mutation */
         $mutation = $this->toolkit->getRepository(\Model\PlayerTallyMutation::class)->createModel();
@@ -125,7 +125,7 @@ class Home
         $mutation->save();
     }
 
-    public function addTallyToPlayer(\Parable\Routing\Route $route, $playerId, $tallyId)
+    public function addTallyToPlayer($playerId, $tallyId)
     {
         $playerTally = $this->toolkit->getRepository(\Model\PlayerTally::class)->createModel();
         $playerTally->player_id = $playerId;
@@ -133,7 +133,7 @@ class Home
         $playerTally->save();
     }
 
-    public function removeTallyFromPlayer(\Parable\Routing\Route $route, $playerId, $tallyId)
+    public function removeTallyFromPlayer($playerId, $tallyId)
     {
         $playerTallyRepo = $this->toolkit->getRepository(\Model\PlayerTally::class);
         $playerTallyRepo->returnOne();

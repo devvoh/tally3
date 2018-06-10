@@ -2,66 +2,75 @@
 
 namespace Routing;
 
-class App implements
-    \Parable\Framework\Interfaces\Routing
+use \Parable\Http\Request;
+
+class App extends \Parable\Framework\Routing\AbstractRouting
 {
-    public function get()
+    public function load()
     {
-        return [
-            'index' => [
-                'methods' => ['GET'],
-                'url' => '/',
-                'controller' => \Controller\Home::class,
-                'action' => 'index',
-            ],
-            'player' => [
-                'methods' => ['GET'],
-                'url' => '/player/{playerId}',
-                'controller' => \Controller\Home::class,
-                'action' => 'player',
-            ],
-            'player-tally' => [
-                'methods' => ['GET'],
-                'url' => '/player-tally/{playerId}/{tallyId}',
-                'controller' => \Controller\Home::class,
-                'action' => 'playerTally',
-            ],
-            'mutate' => [
-                'methods' => ['GET', 'POST'],
-                'url' => '/mutate/{playerTallyId}/{amount}',
-                'controller' => \Controller\Home::class,
-                'action' => 'mutate',
-            ],
-            'add-player' => [
-                'methods' => ['GET', 'POST'],
-                'url' => '/add-player',
-                'controller' => \Controller\Home::class,
-                'action' => 'addPlayer',
-            ],
-            'add-tally' => [
-                'methods' => ['GET', 'POST'],
-                'url' => '/add-tally',
-                'controller' => \Controller\Home::class,
-                'action' => 'addTally',
-            ],
-            'add-player-tally' => [
-                'methods' => ['GET', 'POST'],
-                'url' => '/add-player-tally/{playerId}',
-                'controller' => \Controller\Home::class,
-                'action' => 'addPlayerTally',
-            ],
-            'add-tally-to-player' => [
-                'methods' => ['GET', 'POST'],
-                'url' => '/add-tally-to-player/{playerId}/{tallyId}',
-                'controller' => \Controller\Home::class,
-                'action' => 'addTallyToPlayer',
-            ],
-            'remove-tally-from-player' => [
-                'methods' => ['GET', 'POST'],
-                'url' => '/remove-tally-from-player/{playerId}/{tallyId}',
-                'controller' => \Controller\Home::class,
-                'action' => 'removeTallyFromPlayer',
-            ],
-        ];
+        $this->app->get(
+            '/',
+            [\Controller\Home::class, 'index'],
+            'index'
+        );
+        $this->app->get(
+            '/player/{playerId}',
+            [\Controller\Home::class, 'player'],
+            'player'
+        );
+        $this->app->get(
+            '/player/{playerId}/{tallyId}',
+            [\Controller\Home::class, 'playerTally'],
+            'player-tally'
+        );
+
+        $this->app->multiple(
+            ['GET', 'POST'],
+            '/mutate/{playerTallyId}/{amount}',
+            [\Controller\Home::class, 'mutate'],
+            'mutate'
+        );
+        $this->app->multiple(
+            ['GET', 'POST'],
+            '/add-player',
+            [\Controller\Home::class, 'addPlayer'],
+            'add-player'
+        );
+        $this->app->multiple(
+            ['GET', 'POST'],
+            '/add-tally',
+            [\Controller\Home::class, 'addTally'],
+            'add-tally'
+        );
+        $this->app->multiple(
+            ['GET', 'POST'],
+            '/add-player-tally/{playerId}',
+            [\Controller\Home::class, 'addPlayerTally'],
+            'add-player-tally'
+        );
+        $this->app->multiple(
+            ['GET', 'POST'],
+            '/add-tally-to-player/{playerId}/{tallyId}',
+            [\Controller\Home::class, 'addTallyToPlayer'],
+            'add-tally-to-player'
+        );
+        $this->app->multiple(
+            ['GET', 'POST'],
+            '/remove-tally-from-player/{playerId}/{tallyId}',
+            [\Controller\Home::class, 'removeTallyFromPlayer'],
+            'remove-tally-from-player'
+        );
+
+        /* Exports */
+        $this->app->get(
+            '/exports',
+            [\Controller\Export::class, 'index'],
+            'exports'
+        );
+        $this->app->get(
+            '/export-latest-mutation',
+            [\Controller\Export::class, 'latestMutation'],
+            'export-latest-mutation'
+        );
     }
 }

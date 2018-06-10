@@ -16,6 +16,7 @@ class App implements
                     "title" => "Tally",
                     "version" => "3.0.0",
                 ],
+                "debug" => true,
                 "session" => [
                     "autoEnable" => true,
                 ],

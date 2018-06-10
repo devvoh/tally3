@@ -9,11 +9,7 @@ class Layout
         \Parable\Framework\View $view,
         \Parable\Http\Response  $response
     ) {
-        $hook->into("parable_dispatch_before", function () use ($response, $view) {
-            $response->prependContent($view->partial("app/View/Layout/header.phtml"));
-        });
-        $hook->into('parable_dispatch_after', function () use ($response, $view) {
-            $response->appendContent($view->partial("app/View/Layout/footer.phtml"));
-        });
+        $response->setHeaderContent($view->partial("app/View/Layout/header.phtml"));
+        $response->setFooterContent($view->partial("app/View/Layout/footer.phtml"));
     }
 }
