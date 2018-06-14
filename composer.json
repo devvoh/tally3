@@ -1,5 +1,5 @@
 {
     "require": {
-        "devvoh/parable": "dev-develop"
+        "devvoh/parable": "^1.0.0"
     }
 }

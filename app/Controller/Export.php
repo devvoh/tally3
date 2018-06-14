@@ -35,6 +35,11 @@ class Export
             "tally"        => $playerTally->getTally()->toArray(),
         ];
 
+        $data["metadata"] = [
+            "created_at_timestamp" => (new \DateTime($latestMutation->created_at))->getTimestamp(),
+            "tally_amount_total" => $playerTally->getTally()->getCurrentAmountForPlayer($playerTally->getPlayer()),
+        ];
+
         $this->response->enableHeaderAndFooterContent(false);
         $this->response->setOutput(new \Parable\Http\Output\Json());
         $this->response->setContent(json_encode($data, JSON_PRETTY_PRINT));

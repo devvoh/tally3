@@ -16,6 +16,11 @@ class PlayerTallyMutation extends \Parable\ORM\Model
     /** string */
     public $created_at;
 
+    /**
+     * @return null|\Parable\ORM\Model|\Model\PlayerTally
+     *
+     * @throws \Parable\ORM\Exception
+     */
     public function getPlayerTally()
     {
         return \Parable\ORM\Repository::createForModelName(\Model\PlayerTally::class)->getById($this->player_tally_id);

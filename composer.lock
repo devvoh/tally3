@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cbed94db31a45b555765677a8d5f17df",
-    "content-hash": "b6e3d46c7de9c51758379f86e0bd5e9f",
+    "hash": "3464bd4d8c97edf5d786664a029275a4",
+    "content-hash": "f2dc9162802285b2a663ae7516c46d5d",
     "packages": [
         {
             "name": "devvoh/parable",
-            "version": "dev-develop",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/devvoh/parable.git",
-                "reference": "dd852f1f9cedf1335c02aa4bf630d4cf40967134"
+                "reference": "502fac01a6865e03634f1b83250611fc5d425787"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/devvoh/parable/zipball/dd852f1f9cedf1335c02aa4bf630d4cf40967134",
-                "reference": "dd852f1f9cedf1335c02aa4bf630d4cf40967134",
+                "url": "https://api.github.com/repos/devvoh/parable/zipball/502fac01a6865e03634f1b83250611fc5d425787",
+                "reference": "502fac01a6865e03634f1b83250611fc5d425787",
                 "shasum": ""
             },
             "require": {
@@ -56,15 +56,13 @@
                 "framework",
                 "micro"
             ],
-            "time": "2018-06-10 12:15:32"
+            "time": "2018-06-10 19:17:08"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "devvoh/parable": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
